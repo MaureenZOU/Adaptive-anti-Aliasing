@@ -1,0 +1,2 @@
+python main.py --data ../../data/ILSVRC2012 -f 3 -s 128 -b 200 --lr 0.078 --sigma 1.0 -a resnet18_gau --no_warmup --group 2 --out-dir ../../data/output/test/
+python main.py --data ../../data/ILSVRC2012 -f 3 -e -b 64 -a resnet101_pasa_group_softmax --group 8 --weights ../../data/checkpoints/resnet101_pasa_group8_softmax_warmup5_old/model_best.pth.tar
