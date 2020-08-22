@@ -2,7 +2,7 @@
 
 This work introduce a plugin module in neural network to improve both model accuracy and consistency.
 
-\[[Project page](https://duckduckgo.com)\] | \[[arXiv](https://duckduckgo.com)\] 
+\[[Project page](https://duckduckgo.com)\] | \[[arXiv](https://duckduckgo.com)\] | \[[slide](https://duckduckgo.com)\] | \[[video](https://duckduckgo.com)\]
 
 ![alt text](images/tittle.gif)
 
