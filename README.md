@@ -8,8 +8,8 @@ This work introduce a plugin module in neural network to improve both model accu
 
 ## Progress
 - [x] Image Classification
-- [] Instance Segmentation
-- [] Semantic Segmentation
+- [ ] Instance Segmentation
+- [ ] Semantic Segmentation
 
 ## Installation
 
