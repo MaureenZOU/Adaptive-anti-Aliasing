@@ -1,6 +1,6 @@
 # Delving-Deeper-Into-Anti-Aliasing-in-ConvNets
 
-This work is accepted in **BMVC2020** as *Oral presentation*. It introduces a plugin module in neural network to improve both model accuracy and consistency.
+This work is accepted in **BMVC2020** as ***Oral presentation***. It introduces a plugin module in neural network to improve both model accuracy and consistency.
 
 \[[Project page](https://maureenzou.github.io/ddac/)\] | \[[arXiv](https://maureenzou.github.io/ddac/)\] | \[[slide](https://drive.google.com/file/d/1rX_LRfLCwr3nbX3jmpdKlz9L2S8GrrHS/view?usp=sharing)\] | \[[Talk](https://www.youtube.com/watch?v=R8eSs6Cljvc)\]
 
