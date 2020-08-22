@@ -6,7 +6,10 @@ This work introduce a plugin module in neural network to improve both model accu
 
 ![alt text](images/tittle.gif)
 
-
+## Progress
+- [x] Image Classification
+- [] Instance Segmentation
+- [] Semantic Segmentation
 
 ## Installation
 
