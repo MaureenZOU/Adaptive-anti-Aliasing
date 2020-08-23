@@ -22,7 +22,7 @@ torchvision==0.2.0
     - To do this, you can use the following script: https://raw.githubusercontent.com/soumith/imagenetloader.torch/master/valprep.sh
 
 ## File Structure
-
+```
 anti-aliasing
 └── data
     ├── output
@@ -30,7 +30,7 @@ anti-aliasing
 └── master
     └── Delving-Deeper-Into-Anti-Aliasing-in-ConvNets
         └── ...
-
+```
 
 ## Model Zoo
 
