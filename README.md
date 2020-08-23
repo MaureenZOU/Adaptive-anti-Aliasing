@@ -34,10 +34,10 @@ anti-aliasing
 
 ## Model Zoo
 
-| Model Name                       |        | Top-1 Acc | Consistency |
-|----------------------------------|--------|-----------|-------------|
-| resnet101_k3_pasa_group8_softmax | weight | 79.0      | 91.8        |
-| resnet101_k5_pasa_group8_softmax | weight | 78.6      | 92.2        |
+| Model Name                       |            | Top-1 Acc | Consistency |
+|----------------------------------|------------|-----------|-------------|
+| resnet101_k3_pasa_group8_softmax | [weight]() | 79.0      | 91.8        |
+| resnet101_k5_pasa_group8_softmax | [weight]() | 78.6      | 92.2        |
 
 ## Testing
 
