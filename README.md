@@ -23,6 +23,13 @@ torchvision==0.2.0
 
 ## File Structure
 
+anti-aliasing
+└── data
+    ├── output
+    ├── ILSVRC2012
+└── master
+    └── Delving-Deeper-Into-Anti-Aliasing-in-ConvNets
+        └── ...
 
 
 ## Model Zoo
