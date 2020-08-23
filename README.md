@@ -12,10 +12,18 @@ This work is accepted in **BMVC2020** as ***Oral presentation***. It introduces 
 - [ ] Semantic Segmentation
 
 ## Installation
+```
+torch==1.1.0
+torchvision==0.2.0
+```
 
 ## Dataset
+- Download the ImageNet dataset and move validation images to labeled subfolders
+    - To do this, you can use the following script: https://raw.githubusercontent.com/soumith/imagenetloader.torch/master/valprep.sh
 
 ## File Structure
+
+
 
 ## Model Zoo
 
