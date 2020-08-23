@@ -28,7 +28,7 @@ anti-aliasing
     ├── output
     ├── ILSVRC2012
 └── master
-    └── Delving-Deeper-Into-Anti-Aliasing-in-ConvNets
+    └── Adaptive-anti-Aliasing
         └── ...
 ```
 
