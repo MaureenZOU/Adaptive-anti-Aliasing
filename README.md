@@ -36,7 +36,7 @@ anti-aliasing
 
 | Model Name                       |            | Top-1 Acc | Consistency |
 |----------------------------------|------------|-----------|-------------|
-| resnet101_k3_pasa_group8_softmax | [weight]() | 79.0      | 91.8        |
+| resnet101_k3_pasa_group8_softmax | [weight](https://drive.google.com/file/d/1oky8pbqHiINit9-0Ybu-JZQdZkEIUxry/view?usp=sharing) | 79.0      | 91.8        |
 | resnet101_k5_pasa_group8_softmax | [weight]() | 78.6      | 92.2        |
 
 ## Testing
