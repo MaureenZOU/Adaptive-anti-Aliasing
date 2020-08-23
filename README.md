@@ -2,7 +2,7 @@
 
 This work is accepted in **BMVC2020** as ***Oral presentation***. It introduces a plugin module in neural network to improve both model accuracy and consistency.
 
-\[[Project page](https://maureenzou.github.io/ddac/)\] | \[[arXiv](https://maureenzou.github.io/ddac/)\] | \[[slide](https://drive.google.com/file/d/1rX_LRfLCwr3nbX3jmpdKlz9L2S8GrrHS/view?usp=sharing)\] | \[[video](https://www.youtube.com/watch?v=R8eSs6Cljvc)\] | \[[视频](https://www.bilibili.com/video/BV1aD4y127MF/)\]
+\[[Project page](https://maureenzou.github.io/ddac/)\] | \[[arXiv](https://maureenzou.github.io/ddac/)\] | \[[slide](https://drive.google.com/file/d/1rX_LRfLCwr3nbX3jmpdKlz9L2S8GrrHS/view?usp=sharing)\] | \[[talk YouTube](https://www.youtube.com/watch?v=R8eSs6Cljvc)\] | \[[talk Bilibili](https://www.bilibili.com/video/BV1aD4y127MF/)\]
 
 ![alt text](images/tittle.gif)
 
