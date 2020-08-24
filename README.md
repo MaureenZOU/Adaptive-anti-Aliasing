@@ -50,5 +50,15 @@ python main.py --data ../../data/ILSVRC2012 -f 5 -e -b 32 -a resnet101_pasa_grou
 python main.py --data ../../data/ILSVRC2012 -f 3 -b 128 -ba 2 -a resnet101_pasa_group_softmax --group 8 --out-dir /pth/to/output/dir
 ```
 
+## Citation
+```
+@inproceedings{zou2020delving,
+  title={Delving Deeper into Anti-aliasing in ConvNets},
+  author={Xueyan Zou and Fanyi Xiao and Zhiding Yu and Yong Jae Lee},
+  booktitle={BMVC2020},
+  year={2020}
+}
+```
+
 ## Acknowledgement
 We borrow most of the code from Richard Zhang's Repo (https://github.com/adobe/antialiased-cnns) Thank you : )
