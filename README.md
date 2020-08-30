@@ -55,6 +55,7 @@ python main.py --data ../../data/ILSVRC2012 -f 3 -b 128 -ba 2 -a resnet101_pasa_
 Please directly put "Adaptive-anti-Aliasing/models_lpf/layers/pasa.py" this module before downsampling layers of the backbone except the first convolution layer. We adopt implemantation directly adopted from:
 
 Instance Segmentation: https://github.com/facebookresearch/maskrcnn-benchmark
+
 Semantic Segmentation: https://github.com/VainF/DeepLabV3Plus-Pytorch and https://github.com/feinanshan/TDNet
 
 ## Citation
