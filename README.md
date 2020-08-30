@@ -63,7 +63,7 @@ Semantic Segmentation: https://github.com/VainF/DeepLabV3Plus-Pytorch and https:
 @inproceedings{zou2020delving,
   title={Delving Deeper into Anti-aliasing in ConvNets},
   author={Xueyan Zou and Fanyi Xiao and Zhiding Yu and Yong Jae Lee},
-  booktitle={BMVC2020},
+  booktitle={BMVC},
   year={2020}
 }
 ```
