@@ -52,7 +52,7 @@ python main.py --data ../../data/ILSVRC2012 -f 3 -b 128 -ba 2 -a resnet101_pasa_
 
 ## Instance Segmentation and Semantic Segmentation
 
-Please directly put "Adaptive-anti-Aliasing/models_lpf/layers/pasa.py" this module before downsampling layers of the backbone except the first convolution layer. We adopt implemantation directly adopted from:
+Please directly put "Adaptive-anti-Aliasing/models_lpf/layers/pasa.py" this module before downsampling layers of the backbone except the first convolution layer. We adopt implemantation directly from:
 
 Instance Segmentation: [MaskRcnn](https://github.com/facebookresearch/maskrcnn-benchmark)
 
