@@ -42,7 +42,7 @@ anti-aliasing
 ## Testing
 
 ```
-python main.py --data ../../data/ILSVRC2012 -f 5 -e -b 32 -a resnet101_pasa_group_softmax --group 8 --weights /pth/to/model
+python main.py --data ../../data/ILSVRC2012 -f 3 -e -b 32 -a resnet101_pasa_group_softmax --group 8 --weights /pth/to/model
 ```
 
 ## Training
