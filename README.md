@@ -11,7 +11,7 @@ This work is accepted in **BMVC2020** as ***Best Paper Award***. It introduces a
 - [ ] Instance Segmentation
 - [x] Semantic Segmentation
 
-***I have released beta version Semantic Segmentation code for PASCAL VOC.***
+***I have released beta version Semantic Segmentation code for PASCAL VOC. Please refer to deeplabv3p branch***
 
 ## Installation
 ```
