@@ -1,4 +1,10 @@
+## Model Zoo
 
+| Model Name                       |            | mIOU | Consistency |
+|----------------------------------|------------|-----------|-------------|
+| resnet101 | [weight](https://drive.google.com/file/d/1oky8pbqHiINit9-0Ybu-JZQdZkEIUxry/view?usp=sharing) | 79.0      | 91.8        |
+| resnet101 lpf | [weight](https://drive.google.com/file/d/1rfZ2-W7NM0CfmxkMIxrMAhIgWGBNDMwI/view?usp=sharing) | 78.6      | 92.2        |
+| resnet101 ours | [weight](https://drive.google.com/file/d/1rfZ2-W7NM0CfmxkMIxrMAhIgWGBNDMwI/view?usp=sharing) | 78.6      | 92.2        |
 
 Pretrained weight
 ```
