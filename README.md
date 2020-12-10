@@ -6,7 +6,18 @@ This work is accepted in **BMVC2020** as ***Best Paper Award***. It introduces a
 
 ![alt text](images/tittle.gif)
 
+## Model Zoo
+
+| Model Name                       |            | mIOU | Consistency |
+|----------------------------------|------------|-----------|-------------|
+| resnet101 | [weight](https://drive.google.com/file/d/1Ls7_u9WStbYcTToI6fscJdk8Tr1kupEn/view?usp=sharing) | 78.5      | 95.5        |
+| resnet101 lpf | [weight](https://drive.google.com/file/d/1QMf38efAS8Ddiz-WL-y6ltlPwIuTXoaA/view?usp=sharing) | 78.9      | 95.9        |
+| resnet101 gpasa | [weight](https://drive.google.com/file/d/1zSKZMhLJKCQRjyFZTXsMxPF47RJoRhYo/view?usp=sharing) | 79.5      | 96.0        |
+
+
 ## Get started
+
+### Prepare code
 Here is the bash script where I previously try to config environment
 ```
 mkdir deeplab-v3plus
@@ -41,38 +52,21 @@ rm -rf xueyan-dev.tar.gz
 cd xueyan-dev
 ```
 
-## Model Zoo
-
-| Model Name                       |            | mIOU | Consistency |
-|----------------------------------|------------|-----------|-------------|
-| resnet101 | [weight](https://drive.google.com/file/d/1Ls7_u9WStbYcTToI6fscJdk8Tr1kupEn/view?usp=sharing) | 78.5      | 95.5        |
-| resnet101 lpf | [weight](https://drive.google.com/file/d/1QMf38efAS8Ddiz-WL-y6ltlPwIuTXoaA/view?usp=sharing) | 78.9      | 95.9        |
-| resnet101 gpasa | [weight](https://drive.google.com/file/d/1zSKZMhLJKCQRjyFZTXsMxPF47RJoRhYo/view?usp=sharing) | 79.5      | 96.0        |
-
-
-Prepare code
-
-```bash
-cd /PTH/TO/pasa
-
-sh deeplab.sh
-```
-
-link dataset
+### link dataset
 
 ```bash
 cd /PTH/TO/pasa/deeplab-v3plus/zhiding-dev/Deeplab-v3plus/datasets/data/
 ln /PTH/TO/cityscapes cityscapes
 ```
 
-environment
+### environment
 ```bash
 cd /PTH/TO/pasa/
 source ./env/pasa/bin/activate
 pip install sklearn visdom
 ```
 
-run script
+### run script
 
 ```bash
 cd /PTH/TO/pasa/
