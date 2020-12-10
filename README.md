@@ -7,6 +7,39 @@ This work is accepted in **BMVC2020** as ***Best Paper Award***. It introduces a
 ![alt text](images/tittle.gif)
 
 ## Get started
+Here is the bash script where I previously try to config environment
+```
+mkdir deeplab-v3plus
+cd deeplab-v3plus
+mkdir data
+cd data
+mkdir cityscape
+wget xueyan@XXXXXXX:1234/leftImg8bit_trainvaltest.zip
+wget xueyan@XXXXXXX:1234/gtFine_trainvaltest.zip
+unzip leftImg8bit_trainvaltest.zip
+rm -rf license.txt README
+unzip gtFine_trainvaltest.zip
+rm -rf leftImg8bit_trainvaltest.zip
+rm -rf gtFine_trainvaltest.zip
+cd ..
+mkdir output
+mkdir lpf_weights
+cd lpf_weights
+wget xueyan@XXXXXXX:1124/data/lpf_weights/resnet101_lpf3.pth.tar
+cd ..
+mkdir checkpoints
+cd checkpoints
+mkdir resnet101_pasa_group8_softmax_warmup5_old
+cd resnet101_pasa_group8_softmax_warmup5_old
+wget xueyan@XXXXXXX:1124/data/checkpoints/resnet101_pasa_group8_softmax_warmup5_old/model_best.pth.tar
+cd ..
+cd ..
+cd ..
+wget xueyan@XXXXXXX:1124/xueyan-dev.tar.gz
+tar -xvzf xueyan-dev.tar.gz
+rm -rf xueyan-dev.tar.gz
+cd xueyan-dev
+```
 
 ## Model Zoo
 
