@@ -11,7 +11,7 @@ Prepare code
 
 ```bash
 cd /PTH/TO/pasa
-wget xueyan@169.237.118.52:1124/deeplab.sh
+
 sh deeplab.sh
 ```
 
