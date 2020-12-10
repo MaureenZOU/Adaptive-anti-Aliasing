@@ -2,16 +2,10 @@
 
 | Model Name                       |            | mIOU | Consistency |
 |----------------------------------|------------|-----------|-------------|
-| resnet101 | [weight](https://drive.google.com/file/d/1oky8pbqHiINit9-0Ybu-JZQdZkEIUxry/view?usp=sharing) | 79.0      | 91.8        |
-| resnet101 lpf | [weight](https://drive.google.com/file/d/1rfZ2-W7NM0CfmxkMIxrMAhIgWGBNDMwI/view?usp=sharing) | 78.6      | 92.2        |
-| resnet101 ours | [weight](https://drive.google.com/file/d/1rfZ2-W7NM0CfmxkMIxrMAhIgWGBNDMwI/view?usp=sharing) | 78.6      | 92.2        |
+| resnet101 | [weight](https://drive.google.com/file/d/1Ls7_u9WStbYcTToI6fscJdk8Tr1kupEn/view?usp=sharing) | 78.5      | 95.5        |
+| resnet101 lpf | [weight](https://drive.google.com/file/d/1QMf38efAS8Ddiz-WL-y6ltlPwIuTXoaA/view?usp=sharing) | 78.9      | 95.9        |
+| resnet101 gpasa | [weight](https://drive.google.com/file/d/1zSKZMhLJKCQRjyFZTXsMxPF47RJoRhYo/view?usp=sharing) | 79.5      | 96.0        |
 
-Pretrained weight
-```
-ResNet 101: https://drive.google.com/file/d/1Ls7_u9WStbYcTToI6fscJdk8Tr1kupEn/view?usp=sharing
-ResNet 101, lpf: https://drive.google.com/file/d/1QMf38efAS8Ddiz-WL-y6ltlPwIuTXoaA/view?usp=sharing
-ResNet 101, gpasa: https://drive.google.com/file/d/1zSKZMhLJKCQRjyFZTXsMxPF47RJoRhYo/view?usp=sharing
-```
 
 Prepare code
 
