@@ -14,6 +14,7 @@ from metrics import StreamSegMetrics
 import torch
 import torch.nn as nn
 from utils.visualizer import Visualizer
+from torch.utils.tensorboard import SummaryWriter
 
 from PIL import Image
 import matplotlib
@@ -36,7 +37,7 @@ def get_argparser():
                         choices=['deeplabv3_resnet50',  'deeplabv3plus_resnet50',
                                  'deeplabv3_resnet101', 'deeplabv3plus_resnet101',
                                  'deeplabv3_mobilenet', 'deeplabv3plus_mobilenet', 
-                                 'deeplabv3plus_gpasa_resnet101', 'deeplabv3plus_lpf_resnet101',
+                                 'deeplabv3plus_gpasa_resnet101', 'deeplabv3plus_lpf_resnet101', 'deeplabv3plus_lpfdebug_resnet101',
                                  'deeplabv3plus_pasa_resnet101', 'deeplabv3plus_pasadebug_resnet101'], help='model name')
     parser.add_argument("--separable_conv", action='store_true', default=False,
                         help="apply separable conv to decoder and aspp")
@@ -92,10 +93,8 @@ def get_argparser():
                     help='group number of pasa operation')
     parser.add_argument('--out-dir', dest='out_dir', default='./', type=str,
                     help='output directory')
-    parser.add_argument('--no_warmup', action='store_true',
-                        help='whether perform warmup during training')
-    parser.add_argument('--warmup_iter', default=2000, type=int,
-                        help='the number of epoch for warm up training')
+    parser.add_argument('--tag', dest='tag', default='exp1', type=str,
+                        help='tag for tensorboard save file')
 
     # Visdom options
     parser.add_argument("--enable_vis", action='store_true', default=False,
@@ -221,17 +220,6 @@ def validate(opts, model, loader, device, metrics, ret_samples_ids=None):
     return score, ret_samples
 
 
-def warmup_lr(optimizer, args, cur_iter, full_iter):
-    """Sets the warm up learning rate"""
-    lr = []
-    lr.append(args.lr * (cur_iter*1.0 / full_iter))
-    lr.append((args.lr * (cur_iter*1.0 / full_iter))*0.1)
-
-    cnt = 0
-    for param_group in optimizer.param_groups:
-        param_group['lr'] = lr[cnt]
-        cnt += 1
-
 def main():
     opts = get_argparser().parse_args()
     if opts.dataset.lower() == 'voc':
@@ -269,6 +257,9 @@ def main():
     print("Dataset: %s, Train set: %d, Val set: %d" %
           (opts.dataset, len(train_dst), len(val_dst)))
 
+    # Setup tensorboard debugger
+    summarywriter = SummaryWriter(log_dir=os.path.join(opts.out_dir, 'runs', opts.tag))
+
     # Set up model
     model_map = {
         'deeplabv3_resnet50': network.deeplabv3_resnet50,
@@ -279,12 +270,13 @@ def main():
         'deeplabv3plus_mobilenet': network.deeplabv3plus_mobilenet,
         'deeplabv3plus_gpasa_resnet101': network.deeplabv3plus_gpasa_resnet101,
         'deeplabv3plus_lpf_resnet101': network.deeplabv3plus_lpf_resnet101,
+        'deeplabv3plus_lpfdebug_resnet101': network.deeplabv3plus_lpfdebug_resnet101,
         'deeplabv3plus_pasa_resnet101': network.deeplabv3plus_pasa_resnet101,
         'deeplabv3plus_pasadebug_resnet101': network.deeplabv3plus_pasadebug_resnet101,
     }
 
     if 'gpasa' in opts.model or 'lpf' in opts.model or 'pasa' in opts.model:
-        model = model_map[opts.model](num_classes=opts.num_classes, output_stride=opts.output_stride, filter_size=opts.filter_size, pasa_group=opts.group)
+        model = model_map[opts.model](num_classes=opts.num_classes, output_stride=opts.output_stride, filter_size=opts.filter_size, pasa_group=opts.group, summarywriter=summarywriter)
     else:
         model = model_map[opts.model](num_classes=opts.num_classes, output_stride=opts.output_stride)
 
@@ -304,7 +296,6 @@ def main():
     ], lr=opts.lr, momentum=0.9, weight_decay=opts.weight_decay)
     #optimizer = torch.optim.SGD(params=model.parameters(), lr=opts.lr, momentum=0.9, weight_decay=opts.weight_decay)
     # torch.optim.lr_scheduler.StepLR(optimizer, step_size=opts.lr_decay_step, gamma=opts.lr_decay_factor)
-
     if opts.lr_policy=='poly':
         scheduler = utils.PolyLR(optimizer, opts.total_itrs, power=0.9)
     elif opts.lr_policy=='step':
@@ -370,9 +361,6 @@ def main():
         model.train()
         cur_epochs += 1
         for (images, labels) in train_loader:
-            if cur_itrs <= opts.warmup_iter and not opts.no_warmup:
-                warmup_lr(optimizer, opts, cur_itrs, opts.warmup_iter)
-
             cur_itrs += 1
 
             images = images.to(device, dtype=torch.float32)
@@ -382,6 +370,15 @@ def main():
             outputs = model(images)
             loss = criterion(outputs, labels)
             loss.backward()
+
+            # save grad debug
+            if cur_itrs % 10 == 0 and torch.cuda.current_device() == 0:
+                model.eval()
+                with torch.no_grad():
+                    for name, param in model.named_parameters():
+                        summarywriter.add_scalar(name, torch.norm(param.grad.view(-1)) / torch.norm(param.view(-1)), cur_epochs*len(train_loader)+cur_itrs)
+                model.train()
+
             optimizer.step()
 
             np_loss = loss.detach().cpu().numpy()
@@ -391,8 +388,8 @@ def main():
 
             if (cur_itrs) % 10 == 0:
                 interval_loss = interval_loss/10
-                print("Epoch %d, Itrs %d/%d, Loss=%f, lr=%f" %
-                      (cur_epochs, cur_itrs, opts.total_itrs, interval_loss, optimizer.param_groups[0]['lr']))
+                print("Epoch %d, Itrs %d/%d, Loss=%f" %
+                      (cur_epochs, cur_itrs, opts.total_itrs, interval_loss))
                 interval_loss = 0.0
 
             if (cur_itrs) % opts.val_interval == 0:
@@ -420,11 +417,7 @@ def main():
                         concat_img = np.concatenate((img, target, lbl), axis=2)  # concat along width
                         vis.vis_image('Sample %d' % k, concat_img)
                 model.train()
-            
-            if opts.no_warmup:
-                scheduler.step()
-            elif cur_itrs > opts.warmup_iter:
-                scheduler.step()
-
+            scheduler.step()    
+        
 if __name__ == '__main__':
     main()

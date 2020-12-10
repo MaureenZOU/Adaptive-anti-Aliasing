@@ -1,72 +1,60 @@
-# Delving-Deeper-Into-Anti-Aliasing-in-ConvNets
 
-This work is accepted in **BMVC2020** as ***Best Paper Award***. It introduces a plugin module in neural network to improve both model accuracy and consistency.
 
-\[[Project page](https://maureenzou.github.io/ddac/)\] | \[[arXiv](https://maureenzou.github.io/ddac/)\] | \[[Slide](https://drive.google.com/file/d/1rX_LRfLCwr3nbX3jmpdKlz9L2S8GrrHS/view?usp=sharing)\] | \[[Video](https://www.youtube.com/watch?v=R8eSs6Cljvc)\] | \[[视频](https://www.bilibili.com/video/BV1aD4y127MF/)\]
-
-![alt text](images/tittle.gif)
-
-## Progress
-- [x] Image Classification
-- [ ] Instance Segmentation
-- [ ] Semantic Segmentation
-
-## Installation
+Pretrained weight
 ```
-torch==1.1.0
-torchvision==0.2.0
+ResNet 101: https://drive.google.com/file/d/1Ls7_u9WStbYcTToI6fscJdk8Tr1kupEn/view?usp=sharing
+ResNet 101, lpf: https://drive.google.com/file/d/1QMf38efAS8Ddiz-WL-y6ltlPwIuTXoaA/view?usp=sharing
+ResNet 101, gpasa: https://drive.google.com/file/d/1zSKZMhLJKCQRjyFZTXsMxPF47RJoRhYo/view?usp=sharing
 ```
 
-## Dataset
-- Download the ImageNet dataset and move validation images to labeled subfolders
-    - To do this, you can use the following script: https://raw.githubusercontent.com/soumith/imagenetloader.torch/master/valprep.sh
+Prepare code
 
-## File Structure
-```
-anti-aliasing
-└── data
-    ├── output
-    ├── ILSVRC2012
-└── master
-    └── Adaptive-anti-Aliasing
-        └── ...
+```bash
+cd /PTH/TO/pasa
+wget xueyan@169.237.118.52:1124/deeplab.sh
+sh deeplab.sh
 ```
 
-## Model Zoo
+link dataset
 
-| Model Name                       |            | Top-1 Acc | Consistency |
-|----------------------------------|------------|-----------|-------------|
-| resnet101_k3_pasa_group8_softmax | [weight](https://drive.google.com/file/d/1oky8pbqHiINit9-0Ybu-JZQdZkEIUxry/view?usp=sharing) | 79.0      | 91.8        |
-| resnet101_k5_pasa_group8_softmax | [weight](https://drive.google.com/file/d/1rfZ2-W7NM0CfmxkMIxrMAhIgWGBNDMwI/view?usp=sharing) | 78.6      | 92.2        |
-
-## Testing
-
-```
-python main.py --data ../../data/ILSVRC2012 -f 3 -e -b 32 -a resnet101_pasa_group_softmax --group 8 --weights /pth/to/model
+```bash
+cd /PTH/TO/pasa/deeplab-v3plus/zhiding-dev/Deeplab-v3plus/datasets/data/
+ln /PTH/TO/cityscapes cityscapes
 ```
 
-## Training
-```
-python main.py --data ../../data/ILSVRC2012 -f 3 -b 128 -ba 2 -a resnet101_pasa_group_softmax --group 8 --out-dir /pth/to/output/dir
-```
-
-## Instance Segmentation and Semantic Segmentation
-
-Please directly put "Adaptive-anti-Aliasing/models_lpf/layers/pasa.py" this module before downsampling layers of the backbone except the first convolution layer. We adopt implemantation directly from:
-
-Instance Segmentation: [MaskRcnn](https://github.com/facebookresearch/maskrcnn-benchmark)
-
-Semantic Segmentation: [Deeplab V3+](https://github.com/VainF/DeepLabV3Plus-Pytorch) and [TDNet](https://github.com/feinanshan/TDNet)
-
-## Citation
-```
-@inproceedings{zou2020delving,
-  title={Delving Deeper into Anti-aliasing in ConvNets},
-  author={Xueyan Zou and Fanyi Xiao and Zhiding Yu and Yong Jae Lee},
-  booktitle={BMVC},
-  year={2020}
-}
+environment
+```bash
+cd /PTH/TO/pasa/
+source ./env/pasa/bin/activate
+pip install sklearn visdom
 ```
 
-## Acknowledgement
-We borrow most of the code from Richard Zhang's Repo (https://github.com/adobe/antialiased-cnns) Thank you : )
+run script
+
+```bash
+cd /PTH/TO/pasa/
+source ./env/pasa/bin/activate
+cd deeplab-v3plus/zhiding-dev/Deeplab-v3plus/
+python main.py --model deeplabv3plus_lpf_resnet101 --gpu_id 0,1 --dataset cityscapes --year 2012_aug --crop_val --lr 0.00875 --crop_size 768 --batch_size 14 --warmup_iter 8000 --total_itrs 80000 --output_stride 16 -f 3 --out-dir ../../data/output/deeplabv3plus_lpf_resnet101_warmup_8000_80000_cityscape
+```
+
+```bash
+cd /PTH/TO/pasa/
+source ./env/pasa/bin/activate
+cd deeplab-v3plus/zhiding-dev/Deeplab-v3plus/
+python main.py --model deeplabv3plus_gpasa_resnet101 --gpu_id 2,3 --dataset cityscapes --year 2012_aug --crop_val --lr 0.00875 --crop_size 768 --batch_size 14 --warmup_iter 4000 --total_itrs 80000 --output_stride 16 --group 8 -f 3 --out-dir ../../data/output/deeplabv3plus_gpasa_resnet101_warmup_schdule3_4000_80000_cityscape
+```
+
+```bash
+cd /PTH/TO/pasa/
+source ./env/pasa/bin/activate
+cd deeplab-v3plus/zhiding-dev/Deeplab-v3plus/
+python main.py --model deeplabv3plus_lpf_resnet101 --gpu_id 4,5 --dataset cityscapes --year 2012_aug --crop_val --lr 0.00875 --crop_size 768 --batch_size 14 --warmup_iter 4000 --total_itrs 80000 --output_stride 16 -f 3 --out-dir ../../data/output/deeplabv3plus_lpf_resnet101_warmup_schdule3_4000_80000_cityscape
+```
+
+```bash
+cd /PTH/TO/pasa/
+source ./env/pasa/bin/activate
+cd deeplab-v3plus/zhiding-dev/Deeplab-v3plus/
+python main.py --model deeplabv3plus_resnet101 --gpu_id 6,7 --dataset cityscapes --year 2012_aug --crop_val --lr 0.00875 --crop_size 768 --batch_size 14 --warmup_iter 4000 --total_itrs 80000 --output_stride 16 -f 3 --out-dir ../../data/output/deeplabv3plus_resnet101_warmup_schdule3_4000_80000_cityscape
+```

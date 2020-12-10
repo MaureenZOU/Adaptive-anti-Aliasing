@@ -1,3 +1,2 @@
-from datasets.vid import VidDataset
-from datasets.vid_robust import VidRobustDataset
-from datasets.collate_batch import VIDBatchCollator, VIDRobustBatchCollator
+from .voc import VOCSegmentation
+from .cityscapes import Cityscapes
