@@ -10,7 +10,8 @@ This work is accepted in **BMVC2020** as ***Best Paper Award***. It introduces a
 - [x] Image Classification
 - [ ] Instance Segmentation
 - [x] Semantic Segmentation
-I have released beta version Semantic Segmentation code for PASCAL VOC.
+
+***I have released beta version Semantic Segmentation code for PASCAL VOC.***
 
 ## Installation
 ```
