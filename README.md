@@ -8,10 +8,10 @@ This work is accepted in **BMVC2020** as ***Best Paper Award***. It introduces a
 
 ## Progress
 - [x] Image Classification
-- [ ] Instance Segmentation
+- [x] Instance Segmentation
 - [x] Semantic Segmentation
 
-***I have released beta version Semantic Segmentation code for PASCAL VOC. Please refer to deeplabv3p branch***
+***lastest: I have released beta version Instance Segmentation code for COCO. Please refer to maskrcnn branch***
 
 ## Installation
 ```
