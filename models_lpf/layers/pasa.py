@@ -57,7 +57,7 @@ class Downsample(nn.Module):
 
         filt = torch.Tensor(a[:,None]*a[None,:])
         filt = filt/torch.sum(filt)
-        self.register_buffer('filt', filt[None,None,:,:].repeat((self.channels,1,1,1)))
+        self.register_buffer('filt', filt[None,None,:,:].repeat(self.channels,1,1,1))
 
         self.pad = get_pad_layer(pad_type)(self.pad_sizes)
 
